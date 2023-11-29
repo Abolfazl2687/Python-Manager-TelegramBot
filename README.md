@@ -4,7 +4,7 @@
 ### آموزش نصب
 
 در ویندور:
-`pip install -r libs.txt`
+`pip install -r requirements.txt`
 در لینوکس:
 `python3 -m pip install -r libs.txt`
 

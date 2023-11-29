@@ -6,8 +6,10 @@
 توکن ربات خودتون رو داخل فایل "Token.txt" بدون چیز اضافه ای قرار بدین
 
 در ویندور:
+
 `pip install -r requirements.txt && python ManagerBot.py`
 در لینوکس:
+
 `python3 -m pip install -r libs.txt && python3 ManagerBot.py`
 
 ### دستورات پیوی : 

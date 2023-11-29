@@ -1,0 +1,4 @@
+pyTelegramBotApi
+Faker
+requests
+jdatetime

@@ -8,6 +8,7 @@
 در ویندور:
 
 `pip install -r requirements.txt && python ManagerBot.py`
+
 در لینوکس:
 
 `python3 -m pip install -r libs.txt && python3 ManagerBot.py`

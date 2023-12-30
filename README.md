@@ -11,7 +11,7 @@
 
 در لینوکس:
 
-`python3 -m pip install -r libs.txt && python3 ManagerBot.py`
+`python3 -m pip install -r requirements.txt && python3 ManagerBot.py`
 
 ### دستورات پیوی : 
 

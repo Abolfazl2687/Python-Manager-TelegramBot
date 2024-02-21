@@ -9,7 +9,7 @@ from faker import Faker
 
 #***************************************************var***********************************************
 
-bot = telebot.TeleBot("6859740635:AAH5uxZvQbpeN6fRfkZ5AKzwCYQAqgd7ZKI" , parse_mode='HTML' , disable_web_page_preview=True)
+bot = telebot.TeleBot("TOKEN" , parse_mode='HTML' , disable_web_page_preview=True)
 
 faker = Faker("fa_IR")
 

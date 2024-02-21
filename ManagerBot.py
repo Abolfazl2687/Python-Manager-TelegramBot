@@ -1,6 +1,6 @@
 # Manager Bot
 # Coded By : Dark-Programmer
-# v4
+# v5
 
 import telebot
 import jdatetime 
@@ -9,11 +9,11 @@ from faker import Faker
 
 #***************************************************var***********************************************
 
-bot = telebot.TeleBot("YOUR TOKEN" , parse_mode='HTML' , disable_web_page_preview=True)
+bot = telebot.TeleBot("6859740635:AAH5uxZvQbpeN6fRfkZ5AKzwCYQAqgd7ZKI" , parse_mode='HTML' , disable_web_page_preview=True)
 
 faker = Faker("fa_IR")
 
-madmin = ['Channel' , 'Group' , 'YOUR USERNAME IF YOU WANT TO BOT LISTEN TO YOU EVEN YOU ARE NOT ADMIN' , 'Telegram']
+madmin = ['Channel' , 'Group' , 'Ⓐⓑσ_σⓔⓔ' , 'Telegram']
 
 warnings_file = "warnings.txt"
 
@@ -31,7 +31,7 @@ def check_user(id):
 
 #***************************************************should join***********************************************
 
-channels = ["@Learn_Farsi_Language_Easily"] # Sponsor Channels
+channels = ["@Learn_Farsi_Language_Easily"]
 
 def check_join(channels , user):
     for i in channels:
@@ -85,7 +85,7 @@ keyboard_markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
 keyboard_markup.add("ارسال پیام ناشناس" , "پیام به ادمین 💻" , "مشخصات فیک ℹ" , "دریافت چت آیدی 🔢")
 
 #inline keybord button (add channel)
-sponser = telebot.types.InlineKeyboardButton("اسپانسر" , url="https://t.me/Learn_Farsi_Language_Easily") # Sponsor Channel Botton
+sponser = telebot.types.InlineKeyboardButton("اسپانسر" , url="https://t.me/Learn_Farsi_Language_Easily")
 markup = telebot.types.InlineKeyboardMarkup()
 markup.add(sponser)
 
@@ -294,14 +294,14 @@ def unpin(message):
 def ban(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
-    if str(message.from_user.first_name) in admins:
+    if str(message.from_user.first_name) in admins and str(message.reply_to_message.from_user.id) != "5693860526":
         bot.send_chat_action(message.chat.id , "typing")
         linkm = f'<a href="https://t.me/{message.reply_to_message.from_user.username}">{message.reply_to_message.from_user.first_name}</a>'
         bot.ban_chat_member(message.chat.id , message.reply_to_message.from_user.id , revoke_messages=True)
         bot.reply_to(message , f"کاربر {linkm} \n با موفقیت بن شد.")
 
 #unban
-@bot.message_handler(func= lambda message: message.text == "حذف بن" , chat_types=["supergroup"])
+@bot.message_handler(func= lambda message: message.text == "حذف بن" and str(message.reply_to_message.from_user.id) != "5693860526" , chat_types=["supergroup"])
 def unban(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
@@ -312,22 +312,22 @@ def unban(message):
         bot.reply_to(message , f"کاربر {linkm} \n با موفقیت حذف بن شد.")
 
 #silent
-@bot.message_handler(func= lambda message: "سکوت" in message.text, chat_types=["supergroup"])
+@bot.message_handler(func= lambda message: "سکوت" in message.text and str(message.reply_to_message.from_user.id) != "5693860526" , chat_types=["supergroup"])
 def silent(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
     if str(message.from_user.first_name) in admins:
         try:
             a = message.text.split(" ")
-            st = float(a[1])
+            st = int(a[1])
             bot.send_chat_action(message.chat.id , "typing")
             linkm = f'<a href="https://t.me/{message.reply_to_message.from_user.username}">{message.reply_to_message.from_user.first_name}</a>'
-            bot.restrict_chat_member(message.chat.id , message.reply_to_message.from_user.id ,until_date=time.time() + (st*3600) , can_send_messages=False , can_send_media_messages=False , can_send_polls=False , can_send_other_messages=False , can_add_web_page_previews=False)
-            bot.reply_to(message , f"کاربر {linkm} \n با موفقیت به مدت {str(st)} ساعت سکوت شد.")
+            bot.restrict_chat_member(message.chat.id , message.reply_to_message.from_user.id ,until_date=time.time() + (st*60) , can_send_messages=False , can_send_media_messages=False , can_send_polls=False , can_send_other_messages=False , can_add_web_page_previews=False)
+            bot.reply_to(message , f"کاربر {linkm} \n با موفقیت به مدت {str(st)} دقیقه سکوت شد.")
         except: pass
 
 #un silent
-@bot.message_handler(func= lambda message: message.text == "ازاد", chat_types=["supergroup"])
+@bot.message_handler(func= lambda message: message.text == "ازاد" and str(message.reply_to_message.from_user.id) != "5693860526", chat_types=["supergroup"])
 def unsilent(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
@@ -338,7 +338,7 @@ def unsilent(message):
         bot.reply_to(message , f"کاربر {linkm} \n با موفقیت حذف سکوت شد.")
 
 #Alert
-@bot.message_handler(func=lambda message: message.text == "اخطار" , chat_types=["supergroup"])
+@bot.message_handler(func=lambda message: message.text == "اخطار" and str(message.reply_to_message.from_user.id) != "5693860526", chat_types=["supergroup"])
 def Alert(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
@@ -349,7 +349,7 @@ def Alert(message):
             user_warnings = 0
         user_warnings += 1
         if user_warnings == 5:
-            bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id , until_date=time.time() + (1*3600))
+            bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id , until_date=time.time() + 3600)
             bot.reply_to(message , f"کاربر {linkm} \n [ {str(user_warnings)} ] اخطار دریافت کرده است و برای 1 ساعت در حالت سکوت قرار گرفت.")
         elif user_warnings == 10:
             bot.kick_chat_member(message.chat.id , message.reply_to_message.from_user.id)
@@ -359,7 +359,7 @@ def Alert(message):
         save_user_warnings(message.reply_to_message.from_user.id , user_warnings)  
 
 #UnAlert
-@bot.message_handler(func=lambda message: message.text == "حذف اخطار" , chat_types=["supergroup"])
+@bot.message_handler(func=lambda message: message.text == "حذف اخطار" and str(message.reply_to_message.from_user.id) != "5693860526", chat_types=["supergroup"])
 def UnAlert(message):
     gadmin = bot.get_chat_administrators(message.chat.id)
     admins = [admin.user.first_name for admin in gadmin] + madmin
@@ -370,6 +370,18 @@ def UnAlert(message):
             user_warnings = 0
         save_user_warnings(message.reply_to_message.from_user.id , user_warnings)
         bot.reply_to(message , f"کاربر {linkm} \n [ {str(user_warnings)} ] اخطار دریافت کرده است \n \n 5 اخطار=سکوت , 10 اخطار=بن")
+
+#Invite Link
+@bot.message_handler(func=lambda message: message.text == "لینک" , chat_types=["supergroup"])
+def get_link(message):
+    gadmin = bot.get_chat_administrators(message.chat.id)
+    admins = [admin.user.first_name for admin in gadmin] + madmin
+    if str(message.from_user.first_name) in admins:
+        link = bot.export_chat_invite_link(message.chat.id)
+        bot.send_chat_action(message.chat.id , "typing")
+        bot.reply_to(message , str(link))
+    else:
+        pass
 
 #Links
 @bot.message_handler(chat_types=["supergroup"])
@@ -390,4 +402,4 @@ def link(message):
 
 #*************************************************Run*************************************************
 
-bot.infinity_polling()
+bot.infinity_polling(skip_pending=False)
